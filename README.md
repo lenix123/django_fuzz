@@ -5,17 +5,17 @@ docker build --tag=django .
 
 ## Запуск
 ```
-python3.11 -m pip install coverage
+python3.11 -m pip install requirements.txt
 
 coverage run fuzzNormilize.py test_corpus/ --atheris_runs=1000
 
 coverage run --source=django measure_cov.py test_corpus/
 
-coverage html
+coverage html -d $SRC/out
 ```
 ## Покрытие (не в контейнере)
 ```
-docker cp django:$SRC/out ./
+docker cp django:/src/out ./
 
 ```
 В папке htmlcov файл index.html
