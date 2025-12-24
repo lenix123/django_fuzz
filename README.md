@@ -7,9 +7,9 @@ docker build --tag=django .
 ```
 python3.11 -m pip install requirements.txt
 
-coverage run fuzzNormilize.py test_corpus/ --atheris_runs=1000
+coverage run --source=django fuzzNormilize.py test_corpus/ (тут креши сохранятся)
 
-coverage run --source=django measure_cov.py test_corpus/
+coverage run --source=django fuzzNormilize.py test_corpus/ -atheris_runs=$(( 1 + $(ls test_corpus | wc -l) ))  (тут не сохранятся креши )
 
 coverage html -d $SRC/out
 ```
@@ -19,6 +19,10 @@ docker cp django:/src/out ./
 
 ```
 В папке htmlcov файл index.html
+
+## Креши
+```
+docker cp django:/src/crash* ./
 
 
 Данная функция используется при обработке URL, а точнее паттернов URL. ПА заключается в том, что если подменить регулярное выражение в паттерне и передать его в приложение - высока вероятность краша.

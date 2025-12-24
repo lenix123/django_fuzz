@@ -6,16 +6,13 @@ atheris.instrument_func(normalize)
 
 
 def TestOneInput(data):
-    try:
-        s = data.decode("utf-8", errors="ignore")
-    except Exception:
-        return
+    s = data.decode("utf-8", errors="ignore")
     try:
         normalize(s)
     except (ValueError, NotImplementedError):
         return
     except Exception:
-        print("crash with input - "+ s)
+        raise
 
 
 def main():
