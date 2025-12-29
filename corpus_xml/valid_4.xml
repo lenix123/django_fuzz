@@ -1,0 +1,1 @@
+<?xml version="1.0"?><django-objects><object model="fuzz_app.dummymodel" pk="5"><field name="name">ok</field><field name="data">{"k":[1,2]}</field></object></django-objects>

@@ -16,7 +16,8 @@ RUN mkdir -p $SRC $WORK $OUT
 WORKDIR $SRC
 
 COPY fuzzNormilize.py $SRC/fuzzNormilize.py
-COPY measure_cov.py $SRC/measure_cov.py
-COPY ./test_corpus $SRC/test_corpus
+COPY fuzzXML.py $SRC/fuzzXML.py
+COPY ./corpus_norm $SRC/corpus_norm
+COPY ./corpus_xml $SRC/corpus_xml
 COPY requirements.txt $SRC
 RUN python3 -m pip install -r requirements.txt
