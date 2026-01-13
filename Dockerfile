@@ -5,19 +5,16 @@ RUN apt-get update && apt-get install -y \
    python3-module-pip \
    gcc \
    glibc \
-  python3-modules-sqlite3
-
-
+  python3-modules-sqlite3 \
+  python3-dev
 ENV SRC=/src
-ENV WORK=$SRC/work
-ENV OUT=$SRC/out
-
-RUN mkdir -p $SRC $WORK $OUT
+ENV OUT=/out
+RUN mkdir -p $SRC  $OUT
 WORKDIR $SRC
-
-COPY fuzzNormilize.py $SRC/fuzzNormilize.py
-COPY fuzzXML.py $SRC/fuzzXML.py
-COPY ./corpus_norm $SRC/corpus_norm
-COPY ./corpus_xml $SRC/corpus_xml
+COPY Normilize_fuzzer.py $SRC/
+COPY XML_fuzzer.py $SRC/
+COPY ./corpus_norm $OUT/corpus_norm
+COPY ./corpus_xml $OUT/corpus_xml
 COPY requirements.txt $SRC
+COPY build.sh $SRC/
 RUN python3 -m pip install -r requirements.txt

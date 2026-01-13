@@ -1,6 +1,11 @@
-language: python3
+homepage: "https://github.com/lenix123/django_fuzz"
+main_repo: "https://github.com/django/django"
+language: python
+primary_contact: "a.zarudnyi@fobos-nt.ru"
+auto_ccs:
+  - "pixel133701@gmail.com"
 fuzzing_engines:
   - libfuzzer
-sanitizers: #я не уверен, что тут вообще должен быть этот раздел, ведь питон это интерпритируемиый язык, а не компилируемый (то есть он не компилируется с санитайзерами...)
-  - address 
+sanitizers:
+  - address
   - undefined

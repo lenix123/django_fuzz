@@ -66,7 +66,7 @@ def TestOneInput(data):
         pass
 
 def main():
-    atheris.instrument_all()
+    atheris.instrument_func(XMLDeserializer._handle_object)
     atheris.Setup(sys.argv, TestOneInput, custom_corpus_dirs=["./corpus_xml"])
     atheris.Fuzz()
 

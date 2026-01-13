@@ -23,17 +23,28 @@ docker run -it django
 
 ## Запуск фаззинга
 
+
+###
+
+```
+./build.sh
+cd ../out
+XML_fuzzer ./corpus_xml
+Normalize_fuzzer ./corpus_norm
+
+
+```
 ### normalize()
 ```
-coverage run --source=django fuzzNormilize.py ./corpus_norm/ (тут креши сохранятся)
+coverage run --source=django Normilize_fuzzer.py ./corpus_norm/ (тут креши сохранятся)
 
-coverage run --source=django fuzzNormilize.py ./corpus_norm/ -atheris_runs=$(( 1 + $(ls corpus_norm | wc -l) ))  (тут не сохранятся креши )
+coverage run --source=django Normilize_fuzzer.py ./corpus_norm/ -atheris_runs=$(( 1 + $(ls corpus_norm | wc -l) ))  (тут не сохранятся креши )
 
-coverage html -d $SRC/out_normalize
+coverage html -d $SRC/cov_normalize
 ```
 #### Покрытие (не в контейнере)
 ```
-docker cp django:/src/out_normalize ./
+docker cp django:/src/cov_normalize ./
 ```
 В папке htmlcov файл index.html
 
@@ -46,14 +57,14 @@ rm -f .coverage
 ### _handle_object()
 ```
 
-coverage run --source=django fuzzXML.py  ./corpus_xml
+coverage run --source=django XML_fuzzer.py  ./corpus_xml
 
-coverage run --source=django fuzzXML.py ./corpus_xml/ -atheris_runs=$(( 1 + $(ls corpus_xml | wc -l) ))  (тут не сохранятся креши )
+coverage run --source=django XML_fuzzer.py ./corpus_xml/ -atheris_runs=$(( 1 + $(ls corpus_xml | wc -l) ))  (тут не сохранятся креши )
  
-coverage html -d $SRC/out_xml
+coverage html -d $SRC/cov_xml
 ```
 #### Покрытие (не в контейнере)
 ```
-docker cp django:/src/out_xml ./
+docker cp django:/src/cov_xml ./
 ```
 В папке htmlcov файл index.html
