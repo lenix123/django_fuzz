@@ -17,4 +17,5 @@ COPY ./corpus_norm $OUT/corpus_norm
 COPY ./corpus_xml $OUT/corpus_xml
 COPY requirements.txt $SRC
 COPY build.sh $SRC/
+RUN chmod +x $SRC/build.sh
 RUN python3 -m pip install -r requirements.txt

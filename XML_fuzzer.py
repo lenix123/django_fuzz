@@ -5,6 +5,7 @@ from django.conf import settings
 from xml.dom import minidom
 from io import StringIO
 from django.core.serializers.xml_serializer import Deserializer as XMLDeserializer
+atheris.instrument_func(XMLDeserializer._handle_object)
 from django.core import serializers
 from django.db import models
 
@@ -66,7 +67,7 @@ def TestOneInput(data):
         pass
 
 def main():
-    atheris.instrument_func(XMLDeserializer._handle_object)
+
     atheris.Setup(sys.argv, TestOneInput, custom_corpus_dirs=["./corpus_xml"])
     atheris.Fuzz()
 

@@ -18,7 +18,7 @@ Linux/WSL + python3.11 + coverage (для сбора покрытия)
 docker build --tag=django .
 ```
 ```
-docker run -it django
+docker run -it --name django_fuzz django
 ```
 
 ## Запуск фаззинга
