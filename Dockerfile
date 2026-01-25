@@ -13,6 +13,8 @@ RUN mkdir -p $SRC  $OUT
 WORKDIR $SRC
 COPY Normilize_fuzzer.py $SRC/
 COPY XML_fuzzer.py $SRC/
+COPY urlize.py $SRC/
+COPY ./corpus_urlize $OUT/corpus_urlize
 COPY ./corpus_norm $OUT/corpus_norm
 COPY ./corpus_xml $OUT/corpus_xml
 COPY requirements.txt $SRC

@@ -31,7 +31,7 @@ docker run -it --name django_fuzz django
 cd ../out
 XML_fuzzer ./corpus_xml
 Normalize_fuzzer ./corpus_norm
-
+urlize ./corpus_urlize
 
 ```
 ### normalize()
@@ -60,6 +60,17 @@ rm -f .coverage
 coverage run --source=django XML_fuzzer.py  ./corpus_xml
 
 coverage run --source=django XML_fuzzer.py ./corpus_xml/ -atheris_runs=$(( 1 + $(ls corpus_xml | wc -l) ))  (тут не сохранятся креши )
+ 
+coverage html -d $SRC/cov_xml
+
+
+
+### _urlize()
+```
+
+coverage run --source=django urlize.py  ./corpus_urlize
+
+coverage run --source=django urlize.py ./corpus_urlize -atheris_runs=$(( 1 + $(ls corpus_urlize | wc -l) ))  (тут не сохранятся креши )
  
 coverage html -d $SRC/cov_xml
 ```
