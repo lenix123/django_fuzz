@@ -10,7 +10,7 @@
 Если паттерны URL и маршруты грузятся из файла конфигурации, то злоумышленник, как и в случае с БД, может подменить данные и вызвать сбой.
 
 2. `django.core.serializers.xml_serializer._handle_object()` ([исходники]https://github.com/django/django/blob/main/django/core/serializers/xml_serializer.py). Функция обрабатывает XML-объекты, которые могут загружаться из БД, конфигов, вручную пользователем или администратором, что в любом случае при компроменатации любого из ресурсов поступления XML файлов может привести к падению приложения/
-
+3. `django.utils.html.Urlizer.urlize()._handle_word()` ([исходники]https://github.com/django/django/blob/main/django/utils/html.py). Функция обрабатывает строки и пытается преобразовать их в html теги. Работает с пользовательским вводом, что потенциально может привести к проблемам, таким как - DoS при обработке регулярных варажений, xss атаки через встраивание произвольного JavaScript кода.
 ## Подготовка окружения
 
 Linux/WSL + python3.11 + coverage (для сбора покрытия)
@@ -62,7 +62,7 @@ coverage run --source=django XML_fuzzer.py  ./corpus_xml
 coverage run --source=django XML_fuzzer.py ./corpus_xml/ -atheris_runs=$(( 1 + $(ls corpus_xml | wc -l) ))  (тут не сохранятся креши )
  
 coverage html -d $SRC/cov_xml
-
+```
 
 
 ### _urlize()
