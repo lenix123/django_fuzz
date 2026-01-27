@@ -2,7 +2,7 @@ import sys
 import atheris
 
 with atheris.instrument_imports():
-     from django.utils.html import Urlizer
+     from django.utils.html import urlize
 
 
 
@@ -10,17 +10,17 @@ def TestOneInput(data):
     fdp = atheris.FuzzedDataProvider(data)
 
     word = fdp.ConsumeUnicodeNoSurrogates(200)
-    safe_input = fdp.ConsumeBool()
     autoescape = fdp.ConsumeBool()
     nofollow = fdp.ConsumeBool()
     trim_url_limit = fdp.ConsumeIntInRange(0, 200)
 
-    Urlizer().handle_word(
+    urlize(
         word,
-        safe_input=safe_input,
-        autoescape=autoescape,
-        nofollow=nofollow,
         trim_url_limit=trim_url_limit,
+        nofollow=nofollow,
+        autoescape=autoescape
+        
+
     )
 
 
